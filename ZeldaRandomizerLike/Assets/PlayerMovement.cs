@@ -2,41 +2,98 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
 	public float playerMoveSpeed;
 	public float playerRotateSpeed;
 	public GameObject playerGraphics;
 
+	public float jumpPower;
+	public float gravityPower;
+	public int totalJumpCount;
+
+	int jumpCount;
+	float jumpValue;
+	
+	public bool hasGlider;
+	public bool isGliding;
+	public float gliderFallSpeed;
+
+	public float groundOffset;
+
+	public LayerMask groundLayer;
 	public bool grounded;
 
-	Rigidbody _rb;
+	CharacterController _cc;
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _cc = GetComponent<CharacterController>();
+		jumpCount = totalJumpCount;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
-		Vector3 input = new Vector3(h, _rb.velocity.y, v);
+		Vector3 input = new Vector3(h, 0, v);
 
 		if(input.sqrMagnitude > 1.0f)
 		{
 			input = input.normalized;
 		}
 
+		input *= playerMoveSpeed;
+		input.y = _cc.velocity.y;
+
 		if(!grounded)
 		{
-			input.y = -9.8f;
+			if(Input.GetButtonDown("Jump") && hasGlider)
+			{
+				input.y = 0;
+				isGliding = true;
+			}			
+			if(isGliding){
+				input.y = gliderFallSpeed;
+			}
+			else{
+				input.y -= gravityPower;
+			}
 		}
 
-		_rb.velocity = input * playerMoveSpeed;		
+		if(Input.GetButtonUp("Jump") && hasGlider)
+			{
+				isGliding = false;
+			}
 
-		if(_rb.velocity.x != 0 || _rb.velocity.z != 0){
+        if(grounded){
+			if(Input.GetButtonDown("Jump") && jumpCount > 0)
+			{
+				input.y = jumpPower;
+				grounded = false;
+				jumpCount --;
+			}		
+		}
+
+        Debug.DrawRay(transform.position, Vector3.down * groundOffset, Color.green);
+
+        RaycastHit hit;
+
+		//THIS IS WHERE WE HIT THE GROUND
+		if(Physics.Raycast(transform.position, Vector3.down, out hit, groundOffset, groundLayer))
+		{
+			jumpCount = totalJumpCount;
+			grounded = true;
+		}
+		else{
+			jumpCount = 0;
+			grounded = false;
+		}
+
+		_cc.Move(input * Time.deltaTime);
+
+		if(input.x != 0 || input.z != 0){
 			//SNAP ROTATION
 			//transform.eulerAngles = new Vector3(0, Mathf.Atan2(h, v) * Mathf.Rad2Deg, 0);
 			
@@ -44,20 +101,4 @@ public class PlayerMovement : MonoBehaviour
 			playerGraphics.transform.rotation = Quaternion.Slerp(playerGraphics.transform.rotation, Quaternion.LookRotation(new Vector3(input.x, 0, input.z)), playerRotateSpeed * Time.deltaTime);
 		}
     }
-
-	void OnCollisionEnter(Collision collision)
-	{
-		if(collision.gameObject.tag == "Ground")
-		{
-			grounded = true;
-		}
-	}
-
-	void OnCollisionExit(Collision collision)
-	{
-		if(collision.gameObject.tag == "Ground")
-		{
-			grounded = false;
-		}
-	}
 }
