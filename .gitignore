@@ -2,7 +2,9 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/ZeldaRandomizerLike/Library/
+/ZeldaRandomizerLike/Library/PackageCache/
+/Library/PackageCache/
+/PackageCache/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
