@@ -5,11 +5,16 @@ using UnityEngine;
 public class ItemMenu : MonoBehaviour, IOpenMenu, IEquipItems
 {
 	[SerializeField]
+	private GameObject playerItemHandlerObject;
+	private IEquipItems playerItemHandler;
+
+	[SerializeField]
 	private GameObject itemSelectionPrefab;
 	[SerializeField]
 	private GameObject itemContollerObjectParent;
 
 	List<ItemMenuItemSelection> itemselectionlist;
+
 
 	void IOpenMenu.CloseMenu()
 	{
@@ -29,17 +34,17 @@ public class ItemMenu : MonoBehaviour, IOpenMenu, IEquipItems
 	// Start is called before the first frame update
 	void Awake()
     {
-        
-    }
+		playerItemHandler = playerItemHandlerObject.GetComponent<IEquipItems>();
+	}
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
     {
         
     }
 
 	void IEquipItems.EquipItem(IAmUsableItem item, int slot)
 	{
-		Debug.Log("equipping: " + item.GetItemName() + " to slot: " + slot);
+		playerItemHandler.EquipItem(item, slot);
 	}
 }
