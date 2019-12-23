@@ -23,6 +23,19 @@ public class HoveringPantsItem : UsableItemBase, IAmUsableItem
 	{
 		return this.playerHasItem;
 	}
+	void IAmUsableItem.ItemNoLongerActive()
+	{
+		Debug.Log(((IAmUsableItem)this).GetItemName() + "INACTIVE!");
+	}
+
+	ItemEquipStyle IAmUsableItem.GetEquipStyle()
+	{
+		return ItemEquipStyle.Boots;
+	}
+	void IAmUsableItem.UnequipItem()
+	{
+		Debug.Log(((IAmUsableItem)this).GetItemName() + "UNEQUIPPED!");
+	}
 
 
 

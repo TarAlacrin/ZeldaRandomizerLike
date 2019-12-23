@@ -23,6 +23,21 @@ public class MeteorogiconItem : UsableItemBase, IAmUsableItem
 		return this.playerHasItem;
 	}
 
+	void IAmUsableItem.ItemNoLongerActive()
+	{
+		Debug.Log(((IAmUsableItem)this).GetItemName() + "INACTIVE!");
+	}
+
+	ItemEquipStyle IAmUsableItem.GetEquipStyle()
+	{
+		return ItemEquipStyle.DoesNotEquip;
+	}
+	void IAmUsableItem.UnequipItem()
+	{
+		Debug.Log(((IAmUsableItem)this).GetItemName() + "UNEQUIPPED!");
+	}
+
+
 
 
 	// Start is called before the first frame update

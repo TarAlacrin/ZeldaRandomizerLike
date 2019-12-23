@@ -24,6 +24,22 @@ public class ArrowsBasicItem : UsableItemBase, IAmUsableItem
 		return this.playerHasItem;
 	}
 
+	void IAmUsableItem.ItemNoLongerActive()
+	{
+		Debug.Log(((IAmUsableItem)this).GetItemName() + "INACTIVE!");
+	}
+
+	ItemEquipStyle IAmUsableItem.GetEquipStyle()
+	{
+		return ItemEquipStyle.Lingers;
+	}
+	void IAmUsableItem.UnequipItem()
+	{
+		Debug.Log(((IAmUsableItem)this).GetItemName() + "UNEQUIPPED!");
+	}
+
+
+
 
 
 	// Start is called before the first frame update
@@ -32,8 +48,8 @@ public class ArrowsBasicItem : UsableItemBase, IAmUsableItem
         
     }
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
         
     }

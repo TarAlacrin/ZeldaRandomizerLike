@@ -9,4 +9,12 @@ public interface IAmUsableItem
 	string GetItemName();
 	void ItemKeyDown();
 	void ItemKeyUp();
+
+	//called when another item gets used. when this was the last used item TODO: Implement
+	void ItemNoLongerActive();
+	
+	ItemEquipStyle GetEquipStyle();
+	//called when item is moved off of the hotbar. TODO: implement
+	void UnequipItem();
+
 }

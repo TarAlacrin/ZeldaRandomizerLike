@@ -20,14 +20,9 @@ public class PlayerItemHandler : MonoBehaviour, IEquipItems, IGetEquippedItems, 
 		this.RegisterService<IEquipItems>();
 	}
 
-	/// <summary>
-	/// If Slot= -1 then item will be equippped to the first empty slot, or to slot 0 if all slots are filled
-	/// </summary>
-	/// <param name="item"></param>
-	/// <param name="slot"></param>
 	void IEquipItems.EquipItem(IAmUsableItem item, int slot)
 	{
-		//Handles the slot ==-1 scenario (if its equal to -1 then item will get equipped to first available slot
+		//Handles the (slot == -1) scenario: if its equal to -1 then item will get equipped to first open slot. If none are open it will default to slot 0
 		if(slot ==-1)
 		{
 			slot = 0;
@@ -40,7 +35,6 @@ public class PlayerItemHandler : MonoBehaviour, IEquipItems, IGetEquippedItems, 
 				}
 			}
 		}
-
 		//if you already have the new item equipped to a slot, this swaps the current item equipped in the slot
 		for(int i =0; i < 4; i++)
 		{
@@ -50,14 +44,30 @@ public class PlayerItemHandler : MonoBehaviour, IEquipItems, IGetEquippedItems, 
 					equippedItems[i] = equippedItems[slot];
 			}
 		}
-
 		equippedItems[slot] = item;
-		//UpdateEquipedVisuals();
 	}
 
 	IAmUsableItem[] IGetEquippedItems.GetEquippedItems()
 	{
 		return equippedItems;
+	}
+
+
+
+	void Update()
+	{
+
+	}
+
+
+	void HandleItemUsage()
+	{
+		
+	}
+
+	bool NoItemsActive()
+	{
+		return !(Input.GetButton("UseItem1") || Input.GetButton("UseItem2") || Input.GetButton("UseItem3") || Input.GetButton("UseItem4"));
 	}
 
 
