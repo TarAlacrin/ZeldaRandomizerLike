@@ -34,7 +34,7 @@ public class ServiceProviderSearcher : MonoBehaviour
 
 		foreach(GameObject gam in gameObjectsToSearch)
 		{
-			serviceProviders.AddRange(gam.GetComponentsInChildren<IServiceProvider>());
+			serviceProviders.AddRange(gam.GetComponentsInChildren<IServiceProvider>(true));
 
 			if (IOCContainer.isDebugging)
 				LogServiceProviders(gam.GetComponentsInChildren<IServiceProvider>());

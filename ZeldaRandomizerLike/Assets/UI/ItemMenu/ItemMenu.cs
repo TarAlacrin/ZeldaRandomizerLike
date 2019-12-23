@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemMenu : MonoBehaviour, IOpenMenu, IEquipItems
+public class ItemMenu : MonoBehaviour, IOpenMenu, IEquipItems, IServiceProvider
 {
-	//[SerializeField]
-	//private GameObject playerItemHandlerObject;
-
 	[Dependency]
-	private IEquipItems playerItemHandler;
+	private IEquipItems playerItemHandler =null;
 
-	[SerializeField]
-	private GameObject itemSelectionPrefab;
-	[SerializeField]
-	private GameObject itemContollerObjectParent;
+	//This doesn't get used right now. Don't know if it will get used eventually though.
+	//[SerializeField]
+	//private GameObject itemSelectionPrefab;
 
-	List<ItemMenuItemSelection> itemselectionlist;
 
+	void IServiceProvider.RegisterServices()
+	{
+		this.RegisterService<IOpenMenu>("ItemMenu");
+	}
+
+	private void Awake()
+    {
+		this.ResolveDependencies();
+	}
 
 	void IOpenMenu.CloseMenu()
 	{
@@ -33,21 +37,9 @@ public class ItemMenu : MonoBehaviour, IOpenMenu, IEquipItems
 		return this.gameObject.activeInHierarchy;
 	}
 
-	// Start is called before the first frame update
-	void Awake()
-    {
-		this.ResolveDependencies();
-		//playerItemHandler = playerItemHandlerObject.GetComponent<IEquipItems>();
-	}
-
-// Update is called once per frame
-	void Update()
-    {
-        
-    }
-
 	void IEquipItems.EquipItem(IAmUsableItem item, int slot)
 	{
 		playerItemHandler.EquipItem(item, slot);
 	}
+
 }

@@ -8,14 +8,16 @@ using TMPro;
 public class ItemMenuItemSelection : MonoBehaviour, IPointerEnterHandler
 {
 	[SerializeField]
-	private TextMeshProUGUI nameText;
+	private TextMeshProUGUI nameText = null;
 	[SerializeField]
-	private Button background;
+	private Button background = null;
 
 	//this is for an alternate way of initializing the options.
 	[SerializeField]
-	private GameObject itemControllerObject;
+	private GameObject itemControllerObject =null;
 
+	[SerializeField]
+	private GameObject itemMenuObject =null;
 	IEquipItems itemMenu;
 
 	private IAmUsableItem _Itemcontroller;
@@ -40,12 +42,12 @@ public class ItemMenuItemSelection : MonoBehaviour, IPointerEnterHandler
 		if (itemController == null && itemControllerObject != null)
 			itemController = itemControllerObject.GetComponent<IAmUsableItem>();
 
-		itemMenu = this.gameObject.GetComponentInParent<IEquipItems>();
+		itemMenu = itemMenuObject.GetComponent<IEquipItems>();
 	}
 
 	public void OnClick()
 	{
-		EquipToSlot(0, true);
+		EquipToSlot(-1, true);
 	}
 
 	public void Update()

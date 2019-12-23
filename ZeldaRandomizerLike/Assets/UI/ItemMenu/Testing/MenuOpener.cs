@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MenuOpener : MonoBehaviour
 {
-
-	public GameObject testmenuObject;
-	IOpenMenu menutoopen;
+	[Dependency("ItemMenu")]
+	IOpenMenu itemMenuToOpen = null;
+	[Dependency]
+	IHandlePlayerControlState playerControlStateManager = null;
     // Start is called before the first frame update
     void Awake()
     {
-		menutoopen = testmenuObject.GetComponent<IOpenMenu>();
-
+		this.ResolveDependencies();
 	}
 
     // Update is called once per frame
@@ -19,10 +19,10 @@ public class MenuOpener : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
 		{
-			if (menutoopen.MenuIsOpen())
-				menutoopen.CloseMenu();
-			else
-				menutoopen.OpenMenu();
+			if (itemMenuToOpen.MenuIsOpen())
+				itemMenuToOpen.CloseMenu();
+			else if(playerControlStateManager.PlayerCanOpenMenus())
+				itemMenuToOpen.OpenMenu();
 		}
     }
 }
