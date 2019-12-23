@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ItemMenu : MonoBehaviour, IOpenMenu, IEquipItems
 {
-	[SerializeField]
-	private GameObject playerItemHandlerObject;
+	//[SerializeField]
+	//private GameObject playerItemHandlerObject;
+
+	[Dependency]
 	private IEquipItems playerItemHandler;
 
 	[SerializeField]
@@ -34,11 +36,12 @@ public class ItemMenu : MonoBehaviour, IOpenMenu, IEquipItems
 	// Start is called before the first frame update
 	void Awake()
     {
-		playerItemHandler = playerItemHandlerObject.GetComponent<IEquipItems>();
+		this.ResolveDependencies();
+		//playerItemHandler = playerItemHandlerObject.GetComponent<IEquipItems>();
 	}
 
 // Update is called once per frame
-void Update()
+	void Update()
     {
         
     }

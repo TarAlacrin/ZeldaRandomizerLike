@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerItemHandler : MonoBehaviour, IEquipItems
+public class PlayerItemHandler : MonoBehaviour, IEquipItems, IGetEquippedItems, IServiceProvider
 {
 	private IAmUsableItem[] equippedItems = new IAmUsableItem[4];
+
+	void IServiceProvider.RegisterServices()
+	{
+		this.RegisterService<IGetEquippedItems>();
+		this.RegisterService<IEquipItems>();
+	}
+
 
 	void IEquipItems.EquipItem(IAmUsableItem item, int slot)
 	{
@@ -19,11 +26,12 @@ public class PlayerItemHandler : MonoBehaviour, IEquipItems
 		}
 
 		equippedItems[slot] = item;
-		UpdateEquipedVisuals();
+		//UpdateEquipedVisuals();
 	}
 
-	void UpdateEquipedVisuals()
+	IAmUsableItem[] IGetEquippedItems.GetEquippedItems()
 	{
-		//TODO: implement
+		return equippedItems;
 	}
+
 }

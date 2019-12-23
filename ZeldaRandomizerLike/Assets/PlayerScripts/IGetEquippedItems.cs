@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IGetEquippedItems : MonoBehaviour
+public interface IGetEquippedItems
 {
-
+	IAmUsableItem[] GetEquippedItems();
 }
