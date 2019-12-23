@@ -54,13 +54,13 @@ public class ItemMenuItemSelection : MonoBehaviour, IPointerEnterHandler
 	{
 		if(EventSystem.current.currentSelectedGameObject == background.gameObject)
 		{
-			if (Input.GetButton("UseItem1"))
+			if (Input.GetButton("UseItem0"))
 				EquipToSlot(0);
-			else if (Input.GetButton("UseItem2"))
+			else if (Input.GetButton("UseItem1"))
 				EquipToSlot(1);
-			else if (Input.GetButton("UseItem3"))
+			else if (Input.GetButton("UseItem2"))
 				EquipToSlot(2);
-			else if (Input.GetButton("UseItem4"))
+			else if (Input.GetButton("UseItem3"))
 				EquipToSlot(3);
 		}
 	}

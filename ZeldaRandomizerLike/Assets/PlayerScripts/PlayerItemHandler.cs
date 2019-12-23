@@ -6,8 +6,12 @@ public class PlayerItemHandler : MonoBehaviour, IEquipItems, IGetEquippedItems, 
 {
 	private IAmUsableItem[] equippedItems = new IAmUsableItem[4];
 
+	private IAmUsableItem lastActiveItem;
+	private IAmUsableItem lastEquippedBoot;
+	
+
 	[Dependency]
-	private IHandlePlayerControlState playerControlState;
+	private IHandlePlayerControlState playerControlState = null;
 
 	void Awake()
 	{
@@ -35,15 +39,26 @@ public class PlayerItemHandler : MonoBehaviour, IEquipItems, IGetEquippedItems, 
 				}
 			}
 		}
+
+		bool unequipOccurred = true;
+
 		//if you already have the new item equipped to a slot, this swaps the current item equipped in the slot
-		for(int i =0; i < 4; i++)
+		for (int i =0; i < 4; i++)
 		{
 			if(equippedItems[i] != null && equippedItems[i].GetItemName() == item.GetItemName())
 			{
 				if (i != slot)
 					equippedItems[i] = equippedItems[slot];
+				unequipOccurred = false;
 			}
 		}
+
+		if (unequipOccurred && equippedItems[slot] == null)
+			unequipOccurred = false;
+
+		if (unequipOccurred)
+			equippedItems[slot].UnequipItem();
+
 		equippedItems[slot] = item;
 	}
 
@@ -56,22 +71,68 @@ public class PlayerItemHandler : MonoBehaviour, IEquipItems, IGetEquippedItems, 
 
 	void Update()
 	{
-
+		if (playerControlState.PlayerCanUseItems())
+			HandleItemUsage();
 	}
 
 
 	void HandleItemUsage()
 	{
-		
+		for (int i = 0; i < 4; i++)
+			if (equippedItems[i] != null)
+			{
+				CheckAndHandleItemDown(i);
+				CheckAndHandleItemUp(i);
+			}
 	}
 
-	bool NoItemsActive()
+	bool CheckAndHandleItemDown(int itemnum)
 	{
-		return !(Input.GetButton("UseItem1") || Input.GetButton("UseItem2") || Input.GetButton("UseItem3") || Input.GetButton("UseItem4"));
+		if (!Input.GetButtonDown("UseItem" + itemnum))
+			return false;
+
+		if (!OtherItemsAreNotDown(itemnum))
+			return false;
+
+		ItemUseButtonDown(itemnum);
+		return true;
+	}
+
+	bool CheckAndHandleItemUp(int itemnum)
+	{
+		if (!Input.GetButtonUp("UseItem" + itemnum))
+			return false;
+
+		if (lastActiveItem != equippedItems[itemnum])
+			return false;
+
+		ItemUseButtonUp(itemnum);
+		return true;
 	}
 
 
+	bool OtherItemsAreNotDown(int otherThanItemNum)
+	{
+		for (int i = 0; i < 4; i++)
+			if (i != otherThanItemNum && Input.GetButton("UseItem" + i))
+				return false;
 
-	
+		return true;
+	}
+
+	void ItemUseButtonDown(int itemNum)
+	{
+		if (lastActiveItem != equippedItems[itemNum] && lastActiveItem != null)
+			lastActiveItem.ItemNoLongerActive();
+
+		lastActiveItem = equippedItems[itemNum];
+		equippedItems[itemNum].ItemKeyDown();
+	}
+
+	void ItemUseButtonUp (int itemNum)
+	{
+		equippedItems[itemNum].ItemKeyUp();
+	}
+
 
 }

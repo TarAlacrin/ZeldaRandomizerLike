@@ -176,6 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHasItem: 1
+  arrow: {fileID: 8708780873322122293, guid: 9c461b80df321fb42ac83eab16014645, type: 3}
+  firePoint: {fileID: 0}
+  bow: {fileID: 0}
 --- !u!1 &6705382194249038339
 GameObject:
   m_ObjectHideFlags: 0
