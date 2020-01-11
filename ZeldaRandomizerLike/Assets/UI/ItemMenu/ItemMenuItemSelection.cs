@@ -7,18 +7,20 @@ using TMPro;
 
 public class ItemMenuItemSelection : MonoBehaviour, IPointerEnterHandler
 {
+	[Dependency]
+	IGetUsableitemsFromTypes itemControllerGetter = null; 
 	[SerializeField]
 	private TextMeshProUGUI nameText = null;
 	[SerializeField]
 	private Button background = null;
 
-	//this is for an alternate way of initializing the options.
-	[SerializeField]
-	private GameObject itemControllerObject =null;
+	public UsableItemType itemType;
 
 	[SerializeField]
 	private GameObject itemMenuObject =null;
 	IEquipItems itemMenu;
+
+
 
 	private IAmUsableItem _Itemcontroller;
 	public IAmUsableItem itemController {
@@ -38,9 +40,15 @@ public class ItemMenuItemSelection : MonoBehaviour, IPointerEnterHandler
 
 	void Awake()
 	{
-		background.OnPointerUp(new PointerEventData(EventSystem.current));
-		if (itemController == null && itemControllerObject != null)
-			itemController = itemControllerObject.GetComponent<IAmUsableItem>();
+		this.ResolveDependencies();
+	}
+
+	void Start()
+	{
+		//background.OnPointerUp(new PointerEventData(EventSystem.current));//what is this?
+
+		if (itemController == null)
+			itemController = itemControllerGetter.GetUsableItemFromType(itemType);
 
 		itemMenu = itemMenuObject.GetComponent<IEquipItems>();
 	}

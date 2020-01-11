@@ -20,7 +20,7 @@ public struct NodeConnection
 [System.Flags]
 public enum LogicStates
 {
-	Arrow,
+	/*Arrow,
 	ArrowsIce,
 	ArrowsFire,
 	ArrowsWind,
@@ -43,7 +43,7 @@ public enum LogicStates
 	QuakeTotem,
 	GlimmerCape,
 	StatueStaff,
-	Shovel,
+	Shovel,*/
 	
 	
 }

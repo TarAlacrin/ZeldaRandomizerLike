@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IAmUsableItem 
 {
+	UsableItemType GetItemType();
 	bool PlayerHasItem();
 
 	string GetItemName();

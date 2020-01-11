@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MetalPantsItem : UsableItemBase, IAmUsableItem
+public class MeteorogiconItem : UsableItemBase, IAmUsableItem
 {
 	string IAmUsableItem.GetItemName()
 	{
-		return "Wrought Iron Trousers";
+		return "Meteorogicon";
 	}
 
 	void IAmUsableItem.ItemKeyDown()
@@ -18,7 +18,6 @@ public class MetalPantsItem : UsableItemBase, IAmUsableItem
 	{
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "KEYUP!");
 	}
-
 	bool IAmUsableItem.PlayerHasItem()
 	{
 		return this.playerHasItem;
@@ -31,7 +30,7 @@ public class MetalPantsItem : UsableItemBase, IAmUsableItem
 
 	ItemEquipStyle IAmUsableItem.GetEquipStyle()
 	{
-		return ItemEquipStyle.Boots;
+		return ItemEquipStyle.DoesNotEquip;
 	}
 	void IAmUsableItem.UnequipItem()
 	{
@@ -39,6 +38,10 @@ public class MetalPantsItem : UsableItemBase, IAmUsableItem
 	}
 
 
+	UsableItemType IAmUsableItem.GetItemType()
+	{
+		return UsableItemType.Meteorogicon;
+	}
 
 
 	// Start is called before the first frame update

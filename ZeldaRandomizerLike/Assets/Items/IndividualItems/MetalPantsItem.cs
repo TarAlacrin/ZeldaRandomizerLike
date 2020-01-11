@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImpactTrousersItem : UsableItemBase, IAmUsableItem
+public class MetalPantsItem : UsableItemBase, IAmUsableItem
 {
 	string IAmUsableItem.GetItemName()
 	{
-		return "Impact Trousers";
+		return "Wrought Iron Trousers";
 	}
 
 	void IAmUsableItem.ItemKeyDown()
 	{
-		Debug.Log(((IAmUsableItem)this).GetItemName() +"DONW");
+		Debug.Log(((IAmUsableItem)this).GetItemName() + "DONW");
 	}
 
 	void IAmUsableItem.ItemKeyUp()
@@ -37,6 +37,12 @@ public class ImpactTrousersItem : UsableItemBase, IAmUsableItem
 	{
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "UNEQUIPPED!");
 	}
+
+	UsableItemType IAmUsableItem.GetItemType()
+	{
+		return UsableItemType.PantsIron;
+	}
+
 
 
 	// Start is called before the first frame update

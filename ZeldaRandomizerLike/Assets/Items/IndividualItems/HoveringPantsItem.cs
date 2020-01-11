@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteorogiconItem : UsableItemBase, IAmUsableItem
+public class HoveringPantsItem : UsableItemBase, IAmUsableItem
 {
 	string IAmUsableItem.GetItemName()
 	{
-		return "Meteorogicon";
+		return "Angel's Trousers";
 	}
 
 	void IAmUsableItem.ItemKeyDown()
@@ -18,11 +18,11 @@ public class MeteorogiconItem : UsableItemBase, IAmUsableItem
 	{
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "KEYUP!");
 	}
+
 	bool IAmUsableItem.PlayerHasItem()
 	{
 		return this.playerHasItem;
 	}
-
 	void IAmUsableItem.ItemNoLongerActive()
 	{
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "INACTIVE!");
@@ -30,14 +30,17 @@ public class MeteorogiconItem : UsableItemBase, IAmUsableItem
 
 	ItemEquipStyle IAmUsableItem.GetEquipStyle()
 	{
-		return ItemEquipStyle.DoesNotEquip;
+		return ItemEquipStyle.Boots;
 	}
 	void IAmUsableItem.UnequipItem()
 	{
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "UNEQUIPPED!");
 	}
 
-
+	UsableItemType IAmUsableItem.GetItemType()
+	{
+		return UsableItemType.PantsHover;
+	}
 
 
 	// Start is called before the first frame update

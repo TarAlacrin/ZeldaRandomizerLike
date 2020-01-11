@@ -233,6 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6705382195117088961}
   - component: {fileID: 6705382195117088960}
+  - component: {fileID: 4019167569646130430}
   m_Layer: 0
   m_Name: ItemControllerHolder
   m_TagString: Untagged
@@ -270,6 +271,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da72736f190fd245a9d272174ceec74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4019167569646130430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6705382195117088990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0eb9b784b653b04b9ccb65d8163ef68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6705382195315313504

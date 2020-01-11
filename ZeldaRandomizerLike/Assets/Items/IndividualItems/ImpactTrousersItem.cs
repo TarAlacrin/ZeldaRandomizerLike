@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoveringPantsItem : UsableItemBase, IAmUsableItem
+public class ImpactTrousersItem : UsableItemBase, IAmUsableItem
 {
 	string IAmUsableItem.GetItemName()
 	{
-		return "Angel's Trousers";
+		return "Impact Trousers";
 	}
 
 	void IAmUsableItem.ItemKeyDown()
 	{
-		Debug.Log(((IAmUsableItem)this).GetItemName() + "DONW");
+		Debug.Log(((IAmUsableItem)this).GetItemName() +"DONW");
 	}
 
 	void IAmUsableItem.ItemKeyUp()
@@ -23,6 +23,7 @@ public class HoveringPantsItem : UsableItemBase, IAmUsableItem
 	{
 		return this.playerHasItem;
 	}
+
 	void IAmUsableItem.ItemNoLongerActive()
 	{
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "INACTIVE!");
@@ -36,7 +37,10 @@ public class HoveringPantsItem : UsableItemBase, IAmUsableItem
 	{
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "UNEQUIPPED!");
 	}
-
+	UsableItemType IAmUsableItem.GetItemType()
+	{
+		return UsableItemType.PantsImpact;
+	}
 
 
 	// Start is called before the first frame update
