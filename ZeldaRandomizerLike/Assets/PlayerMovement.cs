@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 	public float gravityPower;
 	public int totalJumpCount;
 
+	public bool canJump;
 	int jumpCount;
 	float jumpValue;
 	
@@ -27,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
 	CharacterController _cc;
 
+	public bool hasControl;
+
     void Start()
     {
         _cc = GetComponent<CharacterController>();
@@ -35,9 +38,16 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
-		Vector3 input = new Vector3(h, 0, v);
+		float h = 0;
+		float v = 0;
+		Vector3 input = Vector3.zero;
+
+		if(hasControl)
+		{
+			h = Input.GetAxis("Horizontal");
+			v = Input.GetAxis("Vertical");
+			input = new Vector3(h, 0, v);
+		}
 
 		if(input.sqrMagnitude > 1.0f)
 		{
@@ -68,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 			}
 
         if(grounded){
-			if(Input.GetButtonDown("Jump") && jumpCount > 0)
+			if(Input.GetButtonDown("Jump") && jumpCount > 0 && canJump)
 			{
 				input.y = jumpPower;
 				grounded = false;
@@ -91,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 			grounded = false;
 		}
 
-		_cc.Move(input * Time.deltaTime);
+		MoveCharacter(input);
 
 		if(input.x != 0 || input.z != 0){
 			//SNAP ROTATION
@@ -101,4 +111,9 @@ public class PlayerMovement : MonoBehaviour
 			playerGraphics.transform.rotation = Quaternion.Slerp(playerGraphics.transform.rotation, Quaternion.LookRotation(new Vector3(input.x, 0, input.z)), playerRotateSpeed * Time.deltaTime);
 		}
     }
+
+	void MoveCharacter(Vector3 amount)
+	{		
+		_cc.Move(amount * Time.deltaTime);
+	}
 }
