@@ -6,7 +6,8 @@ public class FireSwitchReaction : Reaction
 {
 	//TODO: THIS REFERENCE SHOULD NOT BE HANDLED VIA IOC
 	[Dependency]
-	IManageFlags flagManager = null;
+	IGetFlagManagers flagZoneCoordinator = null;
+	IManageFlags flagManager;
 
 	public string flagToControl;
 
@@ -17,6 +18,7 @@ public class FireSwitchReaction : Reaction
 
 	public override void Start()
 	{
+		flagManager = flagZoneCoordinator.GetParentFlagManager(this.transform);
 		base.Start();
 	}
 

@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoneFlagManager : MonoBehaviour, IManageFlags, IServiceProvider
+public class ZoneFlagManager : MonoBehaviour, IManageFlags
 {
 	public bool debugRefresh = false;
+
+	public bool isGlobalZoneManager = false;
+
+	[Dependency]
+	IGetFlagManagers flagZoneCoordinator = null;
 
 	[SerializeField]
 	private List<InitialFlagData> initialSwitchData = new List<InitialFlagData>();
@@ -13,6 +18,8 @@ public class ZoneFlagManager : MonoBehaviour, IManageFlags, IServiceProvider
 
 	private void Awake()
 	{
+		this.ResolveDependencies();
+		flagZoneCoordinator.RegisterZoneManager(this, this.transform, isGlobalZoneManager);
 		InitializeDictionary();
 	}
 
@@ -87,12 +94,6 @@ public class ZoneFlagManager : MonoBehaviour, IManageFlags, IServiceProvider
 	private void SaveState()
 	{
 
-	}
-
-	void IServiceProvider.RegisterServices()
-	{
-		//TODO: THIS SHOULD NOT BE HANDLED VIA IOC
-		this.RegisterService<IManageFlags>();
 	}
 }
 

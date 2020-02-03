@@ -10,11 +10,17 @@ public class BasicFlagReactor : MonoBehaviour
 	private string flagToCareAbout = null;
 
 	[Dependency]
-	private IManageFlags flagManager = null;
+	IGetFlagManagers flagZoneCoordinator = null;
+	IManageFlags flagManager;
 
 	private void Awake()
 	{
 		IOCContainer.Resolve(this);
+	}
+
+	private void Start()
+	{
+		flagManager = flagZoneCoordinator.GetParentFlagManager(this.transform);
 	}
 
 	private void Update()
