@@ -76,7 +76,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _bwBlend: 1
+    - _bwBlend: 0.474
     - _dimension: 2
     - _maskBlend: 0.5
     - _maskSize: 1

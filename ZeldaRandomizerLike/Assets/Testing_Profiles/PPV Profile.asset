@@ -125,6 +125,7 @@ MonoBehaviour:
   - {fileID: -6037619895841851633}
   - {fileID: -1642274792873103345}
   - {fileID: 1020937079034669549}
+  - {fileID: 2653259334195725905}
 --- !u!114 &1020937079034669549
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -151,6 +152,31 @@ MonoBehaviour:
   fastMode:
     overrideState: 1
     value: 0
+--- !u!114 &2653259334195725905
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fd2fb1eafd1544cb09b004843649bc, type: 3}
+  m_Name: Greyscaleo
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  blend:
+    overrideState: 1
+    value: 0.456
+  minDistance:
+    overrideState: 1
+    value: 0
+  maxDistance:
+    overrideState: 1
+    value: 1
 --- !u!114 &4558027140067664812
 MonoBehaviour:
   m_ObjectHideFlags: 3

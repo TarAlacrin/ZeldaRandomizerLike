@@ -109,10 +109,8 @@ public struct InitialFlagData
 public class FlagData
 {
 	private int actualvalue;
-	public int iValue
-	{
-		get
-		{
+	public int iValue {
+		get {
 			return actualvalue;
 		}
 		set

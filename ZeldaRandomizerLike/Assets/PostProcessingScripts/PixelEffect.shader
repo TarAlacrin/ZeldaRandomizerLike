@@ -17,6 +17,7 @@
 			#include "RGBConverter.cginc"
 			 
 			uniform sampler2D _MainTex;
+			sampler2D _CameraDepthTexture;
 			uniform float _bwBlend;
 			uniform int _dimension;
 
@@ -95,9 +96,6 @@
 				return float3(HueBlocker(HSB.x), SatBlocker(HSB.y), LumBlocker(HSB.z));
 			}
 
-
-
-
 			float4 averageColorSpace(float2 uv)
 			{
 				float4 hueIndex = ColorToHueIndex(tex2D(_MainTex, uv));
@@ -108,10 +106,23 @@
 			}
 
 
+			float4 GrabAverageValueOfAreaSize(float2 uvIn, int pixelSize)
+			{
+				float2 pixelPos = floor(uvIn*_ScreenParams.xy);
+
+				float2 startOfMegaPixel = pixelPos - modf(pixelPos, float2(pixelSize, pixelSize));
+
+			}
+
+
+
+
 			float4 frag(v2f_img i) : COLOR
 			{
-				float4 c = tex2D(_MainTex, i.uv);
+				//float4 c = tex2D(_MainTex, i.uv);
+				float4 c = tex2D(_CameraDepthTexture , i.uv);
 
+				
 				//float lum = c.r*.3 + c.g*.59 + c.b*.11;
 				//float3 bw = float3(lum, lum, lum);
 
@@ -119,8 +130,7 @@
 				//result.rgb = lerp(c.rgb, bw, _bwBlend);
 
 
-
-				return lerp(c, averageColorSpace(i.uv), _bwBlend);
+				return lerp(c, c.aaaa*0.2, _bwBlend);
 			}
 			ENDCG
 		}
