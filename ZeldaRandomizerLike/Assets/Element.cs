@@ -16,6 +16,7 @@ public class Element : MonoBehaviour
 
 	virtual public void OnTriggerEnter(Collider other)
 	{
+		//TODO: make these interfaces. No need for direct references.
 		if (other.GetComponent<Reaction>())
 		{
 			other.GetComponent<Reaction>().React(propertyType);
