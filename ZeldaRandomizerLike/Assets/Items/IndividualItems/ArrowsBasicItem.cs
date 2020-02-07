@@ -52,7 +52,6 @@ public class ArrowsBasicItem : UsableItemBase, IAmUsableItem
 		return UsableItemType.Arrows;
 	}
 
-
 	void FireAnArrow()
 	{
 		Instantiate(arrow, firePoint.transform.position, firePoint.transform.rotation);

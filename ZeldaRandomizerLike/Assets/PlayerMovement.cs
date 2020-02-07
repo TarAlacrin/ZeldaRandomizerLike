@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPlayerMovement, IServiceProvider
 {
+
+
 	public float playerMoveSpeed;
 	public float playerRotateSpeed;
 	public GameObject playerGraphics;
@@ -115,5 +117,30 @@ public class PlayerMovement : MonoBehaviour
 	void MoveCharacter(Vector3 amount)
 	{		
 		_cc.Move(amount * Time.deltaTime);
+	}
+
+	void IServiceProvider.RegisterServices()
+	{
+		this.RegisterService<IPlayerMovement>();
+	}
+
+	void IPlayerMovement.SetPlayerHasControl(bool playerHasControl)
+	{
+		this.hasControl = playerHasControl;
+	}
+
+	void IPlayerMovement.SetPlayerCanJump(bool canJump)
+	{
+		this.canJump = canJump;
+	}
+
+	Transform IPlayerMovement.GetGraphicsTransform()
+	{
+		return playerGraphics.transform;
+	}
+
+	Transform IPlayerMovement.GetMovementTransform()
+	{
+		return this.transform;
 	}
 }
