@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -170,13 +170,13 @@ MonoBehaviour:
     value: 1
   blend:
     overrideState: 1
-    value: 0.456
+    value: 1.7
   minDistance:
     overrideState: 1
-    value: 991
+    value: 996.4
   maxDistance:
     overrideState: 1
-    value: 3
+    value: 0.5
 --- !u!114 &4558027140067664812
 MonoBehaviour:
   m_ObjectHideFlags: 3

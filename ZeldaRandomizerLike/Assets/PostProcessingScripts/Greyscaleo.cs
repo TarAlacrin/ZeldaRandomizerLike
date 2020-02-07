@@ -6,10 +6,10 @@ using UnityEngine.Rendering.PostProcessing;
 [PostProcess(typeof(GreyscaleoRenderer), PostProcessEvent.AfterStack, "Custom/Greyscaleo")]
 public sealed class Greyscaleo : PostProcessEffectSettings
 {
-	[Range(0f, 1f), Tooltip("Grayscale effect intensity.")]
-	public FloatParameter blend = new FloatParameter { value = 0.5f };
-	public FloatParameter minDistance = new FloatParameter { value = 0.5f };
-	public FloatParameter maxDistance = new FloatParameter { value = 0.5f };
+	[Range(1f, 4f), Tooltip("Grayscale effect intensity.")]
+	public FloatParameter blend = new FloatParameter { value = 3f };
+	public FloatParameter minDistance = new FloatParameter { value = 997f };
+	public FloatParameter maxDistance = new FloatParameter { value = 1f };
 
 }
 

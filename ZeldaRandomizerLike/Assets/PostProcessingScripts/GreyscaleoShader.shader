@@ -44,7 +44,7 @@
 				float adjustedDepth = ((1 - depth.r) - _minDistance * 0.001) / ((_maxDistance)*0.001);
 				
 
-				float tileSize = pow(floor(max(adjustedDepth, 0)) + 1,3);
+				float tileSize = pow(floor(max(adjustedDepth, 0)) + 1, _Blend);
 				
 					//float4(adjustedDepth, frac(adjustedDepth), frac(adjustedDepth*0.5)*2,1)
 				return grabAverage(i.texcoord, tileSize); //lerp(color, , )); //depth.r*_maxDistance; //float4(_Blend + ((depth.r)*(_maxDistance)-_minDistance*.1),0,0,1);
