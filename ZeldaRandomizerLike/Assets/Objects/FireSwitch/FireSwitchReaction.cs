@@ -41,7 +41,4 @@ public class FireSwitchReaction : Reaction
 		flagManager.SetSwitch(flagToControl, false);
 		base.Unreact();
 	}
-
-
-
 }

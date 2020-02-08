@@ -1,0 +1,13 @@
+newmtl BasicBombMat
+Kd 0.7565218 0.7478261 1
+d 1
+
+newmtl BombTipMat
+Kd 0 0 0
+d 1
+
+newmtl InteractableColorMat
+map_Kd C:/Users/Installer/Desktop/HyperspaceProjectFolder/ZdaRndo/ZeldaRandomizerLike/Assets/Textures/Vectorized Textures/Flashlight_Big.png
+Kd 1 0.5294917 0
+d 1
+

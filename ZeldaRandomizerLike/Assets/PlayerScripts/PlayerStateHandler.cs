@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStateHandler : MonoBehaviour, IHandlePlayerControlState, IServiceProvider
 {
+	//TODO Integrate this with PlayerMovement
 	[Dependency("ItemMenu")]
 	private IOpenMenu itemMenu = null;
 
