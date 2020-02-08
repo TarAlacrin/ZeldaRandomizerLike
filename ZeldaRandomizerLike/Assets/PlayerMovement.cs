@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IServiceProvider
 	public bool grounded;
 
 	CharacterController _cc;
+	public Animator animatorController;
 
 	public bool hasControl;
 
@@ -49,6 +50,13 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IServiceProvider
 			h = Input.GetAxis("Horizontal");
 			v = Input.GetAxis("Vertical");
 			input = new Vector3(h, 0, v);
+			if(h != 0 || v != 0)
+			{
+				animatorController.SetBool("Moving", true);
+			}
+			else{
+				animatorController.SetBool("Moving", false);
+			}
 		}
 
 		if(input.sqrMagnitude > 1.0f)
@@ -79,14 +87,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IServiceProvider
 				isGliding = false;
 			}
 
-        if(grounded){
-			if(Input.GetButtonDown("Jump") && jumpCount > 0 && canJump)
-			{
-				input.y = jumpPower;
-				grounded = false;
-				jumpCount --;
-			}		
-		}
 
         Debug.DrawRay(transform.position, Vector3.down * groundOffset, Color.green);
 
@@ -97,10 +97,23 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IServiceProvider
 		{
 			jumpCount = totalJumpCount;
 			grounded = true;
+			animatorController.SetBool("Jumping", false);
+			//animatorController.SetBool("Falling", false);
 		}
 		else{
 			jumpCount = 0;
 			grounded = false;
+			//animatorController.SetBool("Falling", true);
+		}
+		
+        if(grounded){
+			if(Input.GetButtonDown("Jump") && jumpCount > 0 && canJump)
+			{
+				input.y = jumpPower;
+				grounded = false;
+				jumpCount --;
+				animatorController.SetBool("Jumping", true);
+			}		
 		}
 
 		MoveCharacter(input);
