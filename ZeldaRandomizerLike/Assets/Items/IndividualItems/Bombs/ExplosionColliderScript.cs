@@ -7,7 +7,6 @@ public class ExplosionColliderScript : MonoBehaviour
 	
 	private void OnTriggerEnter(Collider other)
 	{
-		Debug.LogError("TRIGGERENTER " + other.transform.name);
 		ICanBeBombed bombable = other.gameObject.GetComponentInParent<ICanBeBombed>();
 
 		if(bombable != null)

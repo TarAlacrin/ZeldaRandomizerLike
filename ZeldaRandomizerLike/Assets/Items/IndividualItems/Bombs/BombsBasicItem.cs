@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BombsBasicItem : UsableItemBase, IAmUsableItem
 {
+	[SerializeField]
+	private GameObject spawnPoint = null;
+	[SerializeField]
+	private GameObject bombPrefabToSpawn = null;
+
 	string IAmUsableItem.GetItemName()
 	{
 		return "Bombs";
@@ -11,6 +16,7 @@ public class BombsBasicItem : UsableItemBase, IAmUsableItem
 
 	void IAmUsableItem.ItemKeyDown()
 	{
+		Instantiate(bombPrefabToSpawn, spawnPoint.transform.position, spawnPoint.transform.rotation, null);
 		Debug.Log(((IAmUsableItem)this).GetItemName() + "DONW");
 	}
 

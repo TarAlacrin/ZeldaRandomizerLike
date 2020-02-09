@@ -5,10 +5,10 @@ using UnityEngine;
 public class ExplosionParticleSystemHandler : MonoBehaviour
 {
 	[SerializeField]
-	Collider detonationCollider;
+	Collider detonationCollider = null;
 
 	[SerializeField]
-	ParticleSystemForceField forceField;
+	ParticleSystemForceField forceField = null;
 
 	[SerializeField]
 	float ageToKillForceField = 0.1f;

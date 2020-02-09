@@ -53,8 +53,6 @@ MonoBehaviour:
   hookableLayer:
     serializedVersion: 2
     m_Bits: 8192
-  playerMovement: {fileID: 0}
-  playerGraphics: {fileID: 0}
   hookTimeBeforeRetract: 1
   timer: 0
 --- !u!1 &6705382193825537016
@@ -145,6 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHasItem: 1
+  spawnPoint: {fileID: 0}
+  bombPrefabToSpawn: {fileID: 6970056940931411995, guid: 6447d8066e6001a429f5acf72c9d33f1,
+    type: 3}
 --- !u!1 &6705382194222094566
 GameObject:
   m_ObjectHideFlags: 0

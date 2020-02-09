@@ -878,6 +878,11 @@ PrefabInstance:
       propertyPath: handleVisuals
       value: 
       objectReference: {fileID: 1348688579055396976}
+    - target: {fileID: 6705382193908514074, guid: 7e0507ad78e9c9c4fac996bebe8bcbe3,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 9121060521647021520}
     - target: {fileID: 6705382194234297111, guid: 7e0507ad78e9c9c4fac996bebe8bcbe3,
         type: 3}
       propertyPath: firePoint
@@ -1061,6 +1066,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d0c844a25d3ad439a17739dbd66a56, type: 3}
+--- !u!1 &9121060521647021520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4579811256528057938, guid: 20d0c844a25d3ad439a17739dbd66a56,
+    type: 3}
+  m_PrefabInstance: {fileID: 4691139110816754562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7976194915877326702 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3434950391325369580, guid: 20d0c844a25d3ad439a17739dbd66a56,

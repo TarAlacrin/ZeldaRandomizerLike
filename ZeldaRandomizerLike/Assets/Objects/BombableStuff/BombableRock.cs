@@ -5,6 +5,8 @@ using UnityEngine;
 public class BombableRock : MonoBehaviour, ICanBeBombed
 {
 	[SerializeField]
+	bool saveStateToMemory = false;
+	[SerializeField]
 	int ExplosionLevelNeededToBreak = 1;
 	[SerializeField]
 	private GameObject visualsAndCollider = null;
@@ -26,7 +28,11 @@ public class BombableRock : MonoBehaviour, ICanBeBombed
 	{
 		flagManager = flagZoneCoordinator.GetParentFlagManager(this.transform);
 		bool hasBeenSetAlready;
-		flagManager.RegisterNewLocalSwitch(ref HasBeenExploded, GetFlagStringName(), out hasBeenSetAlready);
+
+		if (saveStateToMemory)
+			flagManager.RegisterNewLocalSwitch(ref HasBeenExploded, GetFlagStringName(), out hasBeenSetAlready);
+		else
+			hasBeenSetAlready = false;
 
 		if (hasBeenSetAlready)
 			SetState(HasBeenExploded != 1);
@@ -55,6 +61,7 @@ public class BombableRock : MonoBehaviour, ICanBeBombed
 	{
 		ParticleSystem psystem = Instantiate(explosionSystemPrefab, this.transform.position, this.transform.rotation, this.transform.parent);
 		ParticleSystemRenderer p = psystem.GetComponent<ParticleSystemRenderer>();
+		psystem.transform.localScale = this.transform.localScale;
 		p.material = visualsAndCollider.GetComponent<MeshRenderer>().material;
 		p.material.SetFloat("_Cull", 0f);
 		SetState(false);

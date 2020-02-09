@@ -8,16 +8,16 @@ public class BombDetonator : MonoBehaviour
 	private float fuseLength = 10f;
 
 	[SerializeField]
-	private Light glowLight;
+	private Light glowLight = null;
 	private float initialIntensity;
 
 	[SerializeField]
-	private ParticleSystem fuseSystem;
+	private ParticleSystem fuseSystem = null;
 
 	ParticleSystem.MainModule mainModule;
 
 	[SerializeField]
-	private GameObject explosionPrefab;
+	private GameObject explosionPrefab = null;
 
 	float spawnTime;
 	// Start is called before the first frame update
