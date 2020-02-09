@@ -5150,6 +5150,8 @@ MonoBehaviour:
   fuseLength: 10
   glowLight: {fileID: 6970056940447585396}
   fuseSystem: {fileID: 6970056939566986485}
+  explosionPrefab: {fileID: 6254887233807231139, guid: 0b0c7dd242db53c4fbfa7e892181afda,
+    type: 3}
 --- !u!1 &6970056941489118873
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,6 +56,7 @@ public class BombableRock : MonoBehaviour, ICanBeBombed
 		ParticleSystem psystem = Instantiate(explosionSystemPrefab, this.transform.position, this.transform.rotation, this.transform.parent);
 		ParticleSystemRenderer p = psystem.GetComponent<ParticleSystemRenderer>();
 		p.material = visualsAndCollider.GetComponent<MeshRenderer>().material;
+		p.material.SetFloat("_Cull", 0f);
 		SetState(false);
 	}
 

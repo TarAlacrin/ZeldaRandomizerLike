@@ -13,7 +13,12 @@ public class BombDetonator : MonoBehaviour
 
 	[SerializeField]
 	private ParticleSystem fuseSystem;
+
 	ParticleSystem.MainModule mainModule;
+
+	[SerializeField]
+	private GameObject explosionPrefab;
+
 	float spawnTime;
 	// Start is called before the first frame update
 	void Start()
@@ -27,7 +32,7 @@ public class BombDetonator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(Time.time - fuseLength -0.5f > spawnTime)
+		if(Time.time - fuseLength > spawnTime)
 		{
 			Detonate();
 		}
@@ -46,6 +51,7 @@ public class BombDetonator : MonoBehaviour
 
 	void Detonate()
 	{
-
+		Instantiate(explosionPrefab, this.transform.position, this.transform.rotation, this.transform.parent);
+		Destroy(this.gameObject);
 	}
 }
