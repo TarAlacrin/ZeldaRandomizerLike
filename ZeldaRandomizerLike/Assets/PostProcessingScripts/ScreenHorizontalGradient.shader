@@ -89,6 +89,14 @@ Shader "Unlit/ScreenHorizontalGradient"
                 return o;
             }
 
+			float extrabanding(float inf, float extrabandingAmount)
+			{
+				extrabandingAmount += 256;
+				inf *= extrabandingAmount;
+				inf = round(inf)/extrabandingAmount;
+				return inf;
+			}
+
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
@@ -107,18 +115,28 @@ Shader "Unlit/ScreenHorizontalGradient"
 
 				//float ditherVal = tex2D(_DitherTex, i.pos.xy*0.04)*0.0045;
 
-
 				scale = pow(scale, 2.23);
+				//secondary dither adds in slashes
 
-				float ditherVal = tex2D(_DitherTex, i.pos.xy*0.04)*0.0045;
+				float timedithersig = 0.7;
+				float timedither = tex2D(_DitherTex, i.pos.xy*0.02)*(timedithersig)+1-timedithersig;
 
+
+				float secondarydither = tex2D(_DitherTex, i.pos.xy*0.01);
+
+				float timemod = cos(_Time.x)*0.5 + 0.5;
+				timemod = 1 - timedither * timemod;
+
+				secondarydither = pow(secondarydither, 5.0)*2.0*timemod+_Time.x*0.1;
+
+				float ditherVal = tex2D(_DitherTex, i.pos.xy*0.045+secondarydither)*0.0045;
 				scale += ditherVal;
 
 				fixed4 col = scale;
 
 				col.a = 1;
                 // apply fog
-               // UNITY_APPLY_FOG(i.fogCoord, col);
+				//UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
             }
             ENDCG
