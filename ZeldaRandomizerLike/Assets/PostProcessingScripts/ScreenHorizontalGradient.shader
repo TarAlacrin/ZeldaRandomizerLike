@@ -103,9 +103,15 @@ Shader "Unlit/ScreenHorizontalGradient"
 				scale *= dimw *(1 - dimz);
 				scale += dimz;
 
+				//scale = pow(scale, 2.23);
+
+				//float ditherVal = tex2D(_DitherTex, i.pos.xy*0.04)*0.0045;
+
+
 				scale = pow(scale, 2.23);
 
 				float ditherVal = tex2D(_DitherTex, i.pos.xy*0.04)*0.0045;
+
 				scale += ditherVal;
 
 				fixed4 col = scale;
