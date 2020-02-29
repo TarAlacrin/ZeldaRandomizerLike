@@ -375,7 +375,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   grounded: 1
-  animatorController: {fileID: 0}
+  animatorController: {fileID: 7439439196847285704}
   hasControl: 1
 --- !u!1 &4808181522319742454
 GameObject:
@@ -770,7 +770,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4808181523164747063}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1187,6 +1187,12 @@ PrefabInstance:
 --- !u!4 &699238031989115058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 164f0a48454abb94f936f86e3cb59e00,
+    type: 3}
+  m_PrefabInstance: {fileID: 5534507809363600296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7439439196847285704 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 164f0a48454abb94f936f86e3cb59e00,
     type: 3}
   m_PrefabInstance: {fileID: 5534507809363600296}
   m_PrefabAsset: {fileID: 0}

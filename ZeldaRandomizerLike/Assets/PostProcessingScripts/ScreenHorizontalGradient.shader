@@ -57,7 +57,6 @@ Shader "Unlit/ScreenHorizontalGradient"
 			{
 				float2 HOffset = wsPos.xz - _WorldSpaceCameraPos.xz;
 				float dotProjDist = abs(dot(HOffset, normalize(camForward.xz)));
-
 				return (dotProjDist - d1dist) / D3dist;
 			}
 
@@ -105,8 +104,8 @@ Shader "Unlit/ScreenHorizontalGradient"
 
 				float dimw = _Dimensions.w;
 				float dimz = _Dimensions.z;
-				dimz = -.01;
-				dimw = .5;
+				dimz = .1;
+				dimw = .7;
 
 				scale *= dimw *(1 - dimz);
 				scale += dimz;
