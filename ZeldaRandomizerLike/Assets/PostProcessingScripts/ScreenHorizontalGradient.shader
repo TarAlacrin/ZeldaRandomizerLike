@@ -22,8 +22,8 @@ Shader "Unlit/ScreenHorizontalGradient"
 
             #include "UnityCG.cginc"
 			 sampler2D _DitherTex;
-	float4 _DitherTex_ST;
-	float4 _Dimensions;
+			float4 _DitherTex_ST;
+			float4 _Dimensions;
 
             struct appdata
             {
